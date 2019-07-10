@@ -1,1 +1,1 @@
-# js-pro-course
+# Irina Zaletko 

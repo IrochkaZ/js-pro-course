@@ -1,3 +1,3 @@
 # Irina Zaletko 
 TMS FE15/Front End
-https://t.me/IrochkaZ
+Chat with me https://t.me/IrochkaZ

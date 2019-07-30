@@ -20,10 +20,10 @@ Car.prototype.getAge = function(){
 // implement a common car method changeColor, which should do: take a parameter (color); if your car already has the same color, show a message with text (up to you);if not, change the color and show a message about it.
 Car.prototype.changeColor = function(NewColor){
 	if (NewColor == this.color) {
-		console.log('Your car already has this color.');
+		return 'Your car already has this color.';
 	} else {
 		this.color = NewColor;
-		console.log('Your car is now ' + NewColor);
+		return 'Your car is now ' + NewColor;
 	}
 }
 // implement a common car method calculateWay, which should do:take 2 params: kilometers and fuel;  check if fuel < 10, show a message about refuel;
@@ -33,23 +33,22 @@ Car.prototype.calculateWay = function(kilometers, fuel){
     var fuelForRoad = this.fuelConsumption * (kilometers / 100);
     var refuel;
     if (fuel < 10){
-		console.log('You need to refuel');
+		return 'You need to refuel';
     };
     if ((fuelForRoad - fuel) > 0) {
         refuel = Math.trunc((fuelForRoad - fuel) / this.fuelCapacity) + 1;
-        console.log("You need to refuel " + refuel + " times");
+        return 'You need to refuel ' + refuel + ' times';
     } else {
-        console.log("You don't need to refuel");
+        return "You don't need to refuel" ;
     }
-    console.log("The time it takes to reach the destination " + Math.round(time) + " hours");
 }
-
+// create 3 another class, which should inherit from Car class in ES5 way (e.x. BMW, Lexus, etc. <--- up to you)
 function extend(Child, Parent) {
     Child.prototype = Object.create(Parent.prototype);
     Child.prototype.constructor = Child;
     Child.superclass = Parent.prototype;
 }
-
+// create class properties, which should refers only to that particular car factory, and should not effect others( for example all BMW's would have sunroof, all Lexus's would have climateControl and so on (all properties is up to you) )
 function BMW(model, year, color, maxSpeed, fuelCapacity, fuelConsumption, sunroof = true) {
     BMW.superclass.constructor.call(this, name = "BMW", model, year, color, maxSpeed, fuelCapacity, fuelConsumption);
     this.sunroof = sunroof;
@@ -68,15 +67,14 @@ function Audi(model, year, color, maxSpeed, fuelCapacity, fuelConsumption, gpsNa
 }
 
 extend(Audi, Car);
-
+// create methods, which should refers only to that particular car factory, and should not effect others
 BMW.prototype.exDrive = function(){
-    console.log("This car for the real man")
+    return "This car for the real man";
 }
-
 Audi.prototype.diesel = function(){
-    console.log("This car consumes diesel")
+    return "This car consumes diesel";
 }
-
+// create at least one instance of each class
 var volvo = new Car('volvo', 'xc70', '2011', 'silver', 280, 80, 11);
 var x5 = new BMW('x5','2012', 'black', 270, 90, 10, sunroof= false);
 var rx = new Lexus ('rx', '2009', 'red', 100, 12);

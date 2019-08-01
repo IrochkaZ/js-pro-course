@@ -10,15 +10,13 @@ function get(){
     fetch('http://api.apixu.com/v1/current.json?key=c79c30965ca349f89b3181040193007&q=' + document.getElementById('weather_Search').value)
     .then(response=>response.json())
     .then((data) => {
-        par.innerHTML =`${data.location.country}, ${data.location.name}: ${data.current.temp_c} °C, ${data.current.temp_c}, ${data.current.condition.text}`;
+        par.innerHTML =`${data.location.country}, ${data.location.name}: ${data.current.temp_c} °C, ${data.current.condition.text}`;
         img.src=`http:${data.current.condition.icon}`;
         output.append(img);
         output.append(par);
     })
     .catch((error) => {
-        //debugger;
-        //console.error(error)
-        output.innerHTML = 'Something went wrong or city you are trying to check is not valid';
+        console.error(error);
     })
 }
 

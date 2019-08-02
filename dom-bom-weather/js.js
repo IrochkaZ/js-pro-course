@@ -3,6 +3,8 @@ const input = document.getElementById('weather_Search');
 const output = document.getElementById('output');
 const img = document.createElement('img');
 const par = document.createElement('p');
+const buttonClear = document.getElementsByClassName("clear_button")[0];
+const buttonMyWeather = document.getElementsByClassName("my_weather")[0];
 par.classList.add('description');
 
 function get(){
@@ -20,3 +22,12 @@ function get(){
 }
 button.addEventListener('click',get);
 
+class weatherClass {
+    constructor(country, temp_c, temp_f, text, icon) {
+        this.country = country;
+        this.temp_c = temp_c;
+        this.temp_f = temp_f;
+        this.text = text;
+        this.icon = icon;
+    }
+}

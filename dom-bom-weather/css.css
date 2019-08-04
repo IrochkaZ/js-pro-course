@@ -23,6 +23,8 @@ main{
 #output{
     align-items: center;
     display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
 }
 #button {
     padding: 5px 17px;
@@ -48,4 +50,29 @@ main{
     font-style: italic;
     padding: 10px;
     border-radius: 5px;
+}
+
+.table_weather {
+    display: flex;
+    flex-flow: column;
+}
+
+.tableHead, .tRow {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+}
+
+.tRow {
+    display: flex;
+}
+
+.tableHead > div, .tRow > div, .tRow > img{
+    border: 1px solid;
+    width: 100%;
+    text-align: center;
+}
+
+.condition > img{
+    width:24px;
 }

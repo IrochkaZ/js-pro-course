@@ -8,17 +8,32 @@ body {
     background: linear-gradient(90deg, #7474BF 10%, #348AC7 90%);
     font-family: 'Roboto', sans-serif;
 }
+.my_and_clear_button {
+    border-bottom: solid 1px #4b62e3;
+    padding-bottom: 10px;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-around;
+}
+
 main{
-	width: 400px;
+	width: 500px;
     margin: 100px auto;
     background-color: azure;
     border-radius: 5px;
     padding: 10px;
 }
+.input_block{
+    display: flex;
+    justify-content: center;
+}
 .text{
+    line-height: normal;
+    text-transform: uppercase;
     font-weight: bold;
     font-style: italic;
-    color: #595656;
+    color: #4b62e3;
+    padding: 10px;
 }
 #output{
     align-items: center;
@@ -26,11 +41,13 @@ main{
     justify-content: center;
     flex-direction: row-reverse;
 }
-#button {
+button {
+    padding: 10px 20px;
+    font-weight: bold;
+    border:none;
     padding: 5px 17px;
-    background-color: white;
-    color: #595656;
-    border: 2px solid #103642;
+    color: #ffff;
+    /* border: 2px solid #103642; */
     border-radius: 2px;
     text-align: center;
     text-decoration: none;
@@ -39,22 +56,39 @@ main{
     margin: 4px 2px;
     cursor: pointer;
     }
-#button:hover {
-    border: 3px solif #3a7999;
-	color: #1a75b9;
-	background: rgba(0,0,0,0);
+
+button:hover {
+    background-color: #000000;
+    }
+
+#button{
+    width: 100px;
+    background-color: #f0c810;
 }
+
+
 #weather_Search{
+    font-weight: 400;
+    color: #4d58d1;
+    font-size: 18px;
     margin: 0 5px;
-    color: #595656;
     font-style: italic;
     padding: 10px;
     border-radius: 5px;
 }
-
+.my_weather{
+    background-color: #f0103a;
+}
+.clear_button{
+    background-color: #f28c08;
+}
 .table_weather {
     display: flex;
     flex-flow: column;
+}
+.tableHead{
+    background-color: cornflowerblue;
+    text-align: center;
 }
 
 .tableHead, .tRow {
@@ -65,14 +99,16 @@ main{
 
 .tRow {
     display: flex;
+    background-color: #c9d4ef;
 }
 
 .tableHead > div, .tRow > div, .tRow > img{
+    padding: 10px;
     border: 1px solid;
     width: 100%;
     text-align: center;
 }
 
 .condition > img{
-    width:24px;
+    width:50px;
 }

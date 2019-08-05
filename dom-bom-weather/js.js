@@ -14,7 +14,8 @@ function get(val) {
                 createTable(main);
                 createRow(data.location.name, data.location.country, data.current.temp_c, data.current.condition.icon, data.location.region);
             } else {
-                const region = data.location.region.toLowerCase();
+                const region = data.location.region.replace(' ', '_').replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').toLowerCase();
+                console.log(region);
                 if (main.querySelector(`.${region}`)) {
                     updateRow(data.location.region, data.current.temp_c, data.current.condition.icon);
                 } else {
@@ -101,13 +102,13 @@ function createRow() {
 
     tRow.append(rowCondition);
 
-    tRow.classList.add(arguments[4].toLowerCase());
+    tRow.classList.add(arguments[4].replace(' ', '_').replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').toLowerCase());
 
     document.querySelector('.table_weather').append(tRow);
 }
 
 function updateRow() {
-    const toUpdate = main.querySelector(`.${arguments[0].toLowerCase()}`);
+    const toUpdate = main.querySelector(`.${arguments[0].replace(' ', '_').replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').toLowerCase()}`);
     toUpdate.querySelector('.temp_c').innerText = arguments[1];
     toUpdate.querySelector('.condition >img').src = `http://${arguments[2]}`;
 }

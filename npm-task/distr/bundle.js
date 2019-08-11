@@ -1,104 +1,4 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-var $ = require('jquery');
-
-
-const main = $('main');
-const button = $('#button');
-const input = $('#weather_Search');
-const output = $('#output');
-const buttonClear = $('.clear_button');
-const buttonMyWeather = $('.my_weather');
-
-function toClassCheck(someData){
-  return someData.replace(' ', '_').replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').toLowerCase();
-}
-
-function clearDataTable() {
-  $('.table_weather').remove();
-}
-
-function get(val) {
-  if(val!=''){
-    fetch(`http://api.apixu.com/v1/current.json?key=c79c30965ca349f89b3181040193007&q=${val}`)
-        .then(response => response.json())
-        .then((data) => {
-              console.log('table already created');
-              const region = toClassCheck(data.location.region);
-                console.log(region);
-                if(!$(".table_weather")){
-                  createTable();
-                }else{
-                  if (!$('.'+region)) {
-                    console.log('update');
-                      updateRow(data.location.region, data.current.temp_c, data.current.condition.icon);
-                  } else {
-                    console.log('create');
-                      createRow(data.location.name, data.location.country, data.current.temp_c, data.current.condition.icon, data.location.region);
-                  }
-                }
-        })
-        .catch((error) => {
-            console.error(error);
-        })
-  }
-}
-
-
-const getLocation = () => {
-    navigator.geolocation.getCurrentPosition(({ coords }) => get(`${coords.latitude}, ${coords.longitude}`));
-}
-
-function createTable() {
-  console.log('table create function');
-    const table = `
-    <div class='table_weather'>
-      <div class='tableHead'>
-        <div class='city'>City</div>
-        <div class='country'>Coutry</div>
-        <div class='temp_c'>t, °C</div>
-        <div class='condition'>Condition</div>
-      </div>
-    </div>`;
-
-    main.append(table);
-}
-
-function createRow() {
-    const tRow = `
-    <div class='tRow ${arguments[4]}'>
-      <div class='city'>${arguments[0]}</div>
-      <div class='country'>${arguments[1]}</div>
-      <div class='temp_c'>${arguments[2]}</div>
-      <div class='condition'>${arguments[3]}</div>
-    </div>
-    `;
-    $('.table_weather').append(tRow);
-}
-
-function updateRow() {
-    const toUpdate = $('.'+toClassCheck(arguments[0]));
-    $('.temp_c').text(arguments[1]);
-    $('.condition >img').attr("src","http://${arguments[2]}");
-}
-
-
-
-
-//example addevent listner replace to jquery standarts
-$("#button").click(()=>{
-  get(input.val());
-});
-
-buttonMyWeather.click(()=>{
-  getLocation();
-});
-
-
-buttonClear.click(()=>{
-  clearDataTable();
-})
-
-},{"jquery":2}],2:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.4.1
  * https://jquery.com/
@@ -10698,4 +10598,130 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-},{}]},{},[1]);
+},{}],2:[function(require,module,exports){
+'use strict';
+
+var _toClassCheck = require('./toClassCheck');
+
+var $ = require('jquery'); //es5
+//const toClassCheck = require('./toClassCheck');
+
+//es6
+
+
+var main = $('main');
+var button = $('#button');
+var input = $('#weather_Search');
+var output = $('#output');
+var buttonClear = $('.clear_button');
+var buttonMyWeather = $('.my_weather');
+
+function getWeather(val) {
+  if (val != '') {
+    fetch('http://api.apixu.com/v1/current.json?key=c79c30965ca349f89b3181040193007&q=' + val).then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      var region = '.' + (0, _toClassCheck.toClassCheck)(data.location.region);
+      if (!$('.table_weather').length) {
+        createTable();
+        createRow(data.location.name, data.location.country, data.current.temp_c, data.current.condition.icon, data.location.region);
+      } else {
+        if ($(region).length) {
+          updateRow(data.location.region, data.current.temp_c, data.current.condition.icon);
+        } else {
+          createRow(data.location.name, data.location.country, data.current.temp_c, data.current.condition.icon, data.location.region);
+        }
+      }
+    }).catch(function (error) {
+      console.error(error);
+    });
+  }
+}
+
+function clearDataTable() {
+  $('.table_weather').remove();
+}
+
+var getLocation = function getLocation() {
+  navigator.geolocation.getCurrentPosition(function (_ref) {
+    var coords = _ref.coords;
+    return getWeather(coords.latitude + ', ' + coords.longitude);
+  });
+};
+
+function createTable() {
+
+  var table = document.createElement('div');
+  table.classList.add('table_weather');
+
+  var tableHead = document.createElement('div');
+  tableHead.classList.add('tableHead');
+  table.append(tableHead);
+
+  var headCity = document.createElement('div');
+  headCity.classList.add('city');
+  headCity.innerText = 'City';
+  tableHead.append(headCity);
+
+  var headCountry = document.createElement('div');
+  headCountry.classList.add('country');
+  headCountry.innerText = 'Country';
+  tableHead.append(headCountry);
+
+  var headTempC = document.createElement('div');
+  headTempC.classList.add('temp_c');
+  headTempC.innerText = 't, °C';
+  tableHead.append(headTempC);
+
+  var headCondition = document.createElement('div');
+  headCondition.classList.add('condition');
+  headCondition.innerText = 'Condition';
+  tableHead.append(headCondition);
+
+  main.append(table);
+}
+
+function createRow() {
+  var tRow = '\n    <div class=\'tRow ' + (0, _toClassCheck.toClassCheck)(arguments[4]) + '\'>\n      <div class=\'city\'>' + arguments[0] + '</div>\n      <div class=\'country\'>' + arguments[1] + '</div>\n      <div class=\'temp_c\'>' + arguments[2] + '</div>\n      <div class=\'condition\'><img src="' + arguments[3] + '" alt ="' + arguments[0] + '"></div>\n    </div>\n    ';
+  $('.table_weather').append(tRow);
+}
+
+function updateRow() {
+  var temp_c = $('.' + (0, _toClassCheck.toClassCheck)(arguments[0]) + ' .temp_c');
+  var cond = $('.' + (0, _toClassCheck.toClassCheck)(arguments[0]) + ' .condition >img');
+  temp_c.text(arguments[1]);
+  cond.attr("src", "http://" + arguments[2]);
+}
+
+$("#button").click(function () {
+  getWeather(input.val());
+});
+
+buttonMyWeather.click(function () {
+  getLocation();
+});
+
+buttonClear.click(function () {
+  clearDataTable();
+});
+
+},{"./toClassCheck":3,"jquery":1}],3:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.toClassCheck = toClassCheck;
+//es5
+/*function toClassCheck(someData) {
+    return someData.replace(' ', '_').replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').toLowerCase();
+}
+
+module.exports = toClassCheck; */
+
+//es6
+function toClassCheck(someData) {
+    return someData.replace(' ', '_').replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').toLowerCase();
+}
+
+},{}]},{},[2]);

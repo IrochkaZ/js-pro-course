@@ -23,7 +23,7 @@ main{
     border-radius: 5px;
     padding: 10px;
 }
-.input_block{
+form{
     display: flex;
     justify-content: center;
 }
@@ -61,7 +61,7 @@ button:hover {
     background-color: #000000;
     }
 
-#button{
+#search_button{
     width: 100px;
     background-color: #f0c810;
 }
@@ -76,10 +76,10 @@ button:hover {
     padding: 10px;
     border-radius: 5px;
 }
-.my_weather{
+#my_weather{
     background-color: #f0103a;
 }
-.clear_button{
+#clear_button{
     background-color: #f28c08;
 }
 .table_weather {

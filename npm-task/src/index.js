@@ -3,7 +3,7 @@
 
 //es6
 import { toClassCheck } from './toClassCheck';
-var $ = require('jquery');
+const $ = require('jquery');
 
 const main = $('main');
 const button = $('#button');

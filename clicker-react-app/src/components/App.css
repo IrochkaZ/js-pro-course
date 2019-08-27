@@ -1,0 +1,57 @@
+.clicker {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    border-radius: 5px;
+    border: 1px solid #cfd0d2;
+    background: #f8f9fb;
+    height: 200px;
+    width: 300px;
+    margin: 20px;
+    overflow: hidden;
+}
+
+.counter {
+    font-size: 72px;
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    border:none;
+    width:33%;
+    height:90px;
+    cursor: pointer;
+    font-size: 25px; 
+}
+
+button > img {
+    width:20px;
+}
+
+button.minus{
+    background: #dc3546;
+    border-bottom-right-radius: 5px;
+}
+
+button.plus{
+    background: #27a844;
+    border-bottom-left-radius: 5px;
+}
+
+button.refresh{
+    background: #fec107
+}
+.plus, .minus{
+    color: #f8f9fb;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.refresh{
+    color: black;
+    font-size: 36px;
+}
+.clicker-wrap{
+    display: flex;
+}

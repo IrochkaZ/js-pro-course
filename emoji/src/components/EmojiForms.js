@@ -12,11 +12,10 @@ export default class EmojiForms extends Component {
   handleChange(event) {
     const { value } = event.target;
     // eslint-disable-next-line array-callback-return
-    const sort = emojiList.sort((emoji) => {
+    const sort = emojiList.filter((emoji) => {
       if (emoji.keywords.toLowerCase().indexOf(value.toLowerCase()) >= 0 || emoji.title.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
         return emoji.title;
       }
-
     });
     this.setState({ sort });
   }

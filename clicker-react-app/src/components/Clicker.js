@@ -7,11 +7,9 @@ export default class Clicker extends Component {
             count: 0
         }
     }
-
     counterMinus = () => {
         this.setState((prevState) => ({ count: prevState.count - 1 }));
     }
-
     counterPlus = () => {
         this.setState((prevState) => ({ count: prevState.count + 1 }))
     }

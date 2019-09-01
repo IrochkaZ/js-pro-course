@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import EmojiForms from './components/EmojiForms';
+import App from './components/app';
 
 
-ReactDOM.render(<EmojiForms />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 

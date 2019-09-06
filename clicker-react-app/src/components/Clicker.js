@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
+import Counter from './counter';
+
+import ButtonGroup from './button-group';
 
 export default class Clicker extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            count: 0
-        }
+    state = {
+        count: 0,
     }
 
     counterMinus = () => {
         this.setState((prevState) => ({ count: prevState.count - 1 }));
     }
-
     counterPlus = () => {
         this.setState((prevState) => ({ count: prevState.count + 1 }))
     }
@@ -20,15 +19,26 @@ export default class Clicker extends Component {
         this.setState({ count: 0 });
     }
 
+    cbs = {
+        'plus': this.counterPlus,
+        'refresh': this.counterRefresh,
+        'minus': this.counterMinus
+    }
+
+    componentDidMount() {
+        console.log('componentDidMount()');
+    }
+
+    componentDidUpdate() {
+        console.log('componentDidUpdate()');
+    }
+
     render() {
+        console.log('render()')
         return (
             <div className='clicker'>
-                <p className="counter">{this.state.count}</p>
-                <div className='wrapper-but'>
-                    <button className="button btn plus" onClick={this.counterPlus}>+</button>
-                    <button className="button btn refresh" onClick={this.counterRefresh}>↺</button>
-                    <button className="button btn minus" onClick={this.counterMinus}>&minus;</button>
-                </div>
+                <Counter cnt={this.state.count} />
+                <ButtonGroup cbs={this.cbs} />
             </div>
         );
     }

@@ -1,0 +1,8 @@
+.main {
+    display: block;
+    padding: 16px;
+    max-width: 600px;
+    margin: 16px auto;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+  }

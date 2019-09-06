@@ -1,0 +1,35 @@
+button {
+    border:none;
+    width:33%;
+    height:90px;
+    cursor: pointer;
+    font-size: 25px; 
+}
+
+button > img {
+    width:20px;
+}
+
+button.minus{
+    background: #dc3546;
+    border-bottom-right-radius: 5px;
+}
+
+button.plus{
+    background: #27a844;
+    border-bottom-left-radius: 5px;
+}
+
+button.refresh{
+    background: #fec107
+}
+.plus, .minus{
+    color: #f8f9fb;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.refresh{
+    color: black;
+    font-size: 36px;
+}

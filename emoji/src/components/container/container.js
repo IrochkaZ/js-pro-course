@@ -8,7 +8,7 @@ export default class Container extends Component {
         const { data } = this.props;
         return (
             <div className='main'>
-                <Form cb={data[1]} />
+                <Form searchField={data[1]} />
                 <EmoContainer data={data[0]} />
             </div>
         )
